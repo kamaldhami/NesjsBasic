@@ -38,7 +38,7 @@ export class UserService {
     const checkPass = await bcrypt.compare(password, user.password);
     if (!checkPass) throw new UnauthorizedException('Incorrect password');
 
-    const token = this.jwtService.sign({ _id: user._id });
+    const token = this.jwtService.sign({ _id: user._id, role: 'admin' });
 
     return { token, user };
   }
